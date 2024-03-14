@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://0ail12tjpun"]
+
+[ext_resource type="Texture2D" uid="uid://crem0xi2fg3u7" path="res://assets/circle.png" id="1_uqknl"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 26.0
+fill_mode = 4
+texture_progress = ExtResource("1_uqknl")
+tint_progress = Color(0, 1, 0, 1)

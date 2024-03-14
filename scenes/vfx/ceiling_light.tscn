@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dyo8ga8mky7ov"]
+
+[node name="OmniLight3D" type="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126193, 2.33381, -0.780666)
+light_energy = 3.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+shadow_opacity = 0.6
+omni_range = 15.0

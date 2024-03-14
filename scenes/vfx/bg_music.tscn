@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpjm3j24knk85"]
+
+[ext_resource type="AudioStream" uid="uid://cvkip2ck1fk1k" path="res://assets/audio/aberration_0.wav" id="1_80ggo"]
+
+[node name="BgMusic" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_80ggo")
+autoplay = true
+bus = &"Music"

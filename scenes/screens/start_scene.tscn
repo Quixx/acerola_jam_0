@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2ncg0um5u8xn"]
+
+[ext_resource type="PackedScene" uid="uid://h4a6saefxjws" path="res://scenes/rooms/rooms_start/start_room.tscn" id="1_xltp0"]
+[ext_resource type="Script" path="res://scripts/vfx/light_gradient.gd" id="2_1r7v4"]
+[ext_resource type="PackedScene" uid="uid://btudj6ie5dql2" path="res://charactger_rigged.tscn" id="2_hbyiy"]
+[ext_resource type="PackedScene" uid="uid://cbrjl65rk02y8" path="res://scenes/screens/start_menu.tscn" id="4_aiimk"]
+
+[sub_resource type="Environment" id="Environment_ufs3v"]
+tonemap_mode = 2
+tonemap_white = 2.33
+ssao_enabled = true
+ssao_intensity = 5.47
+ssil_enabled = true
+sdfgi_enabled = true
+adjustment_enabled = true
+adjustment_saturation = 0.59
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1x3gh"]
+exposure_multiplier = 1.733
+dof_blur_far_distance = 68.82
+dof_blur_near_enabled = true
+dof_blur_near_distance = 4.42
+
+[node name="start_scene" type="Node3D"]
+
+[node name="StartRoom" parent="." instance=ExtResource("1_xltp0")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.99993, 0.00278379, -0.0115342, 0.000505762, 0.981205, 0.19297, 0.0118546, 0.19295, -0.981137, 4.16647, 1.58454, 2.86798)
+light_energy = 1.903
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_opacity = 0.78
+shadow_blur = 2.774
+script = ExtResource("2_1r7v4")
+color_a = Color(1, 1, 1, 1)
+color_b = Color(1, 0.627451, 0.572549, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.99993, 0.00278379, -0.0115342, 0.000505762, 0.981205, 0.19297, 0.0118546, 0.19295, -0.981137, 4.04117, 1.58454, 0.0276332)
+environment = SubResource("Environment_ufs3v")
+attributes = SubResource("CameraAttributesPractical_1x3gh")
+fov = 37.8493
+
+[node name="charactger_rigged" parent="." instance=ExtResource("2_hbyiy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.79176, 0.023463, 4.49557)
+
+[node name="start_menu" parent="." instance=ExtResource("4_aiimk")]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2jw6je1aol32"]
+
+[ext_resource type="PackedScene" uid="uid://byt1acm8gpno" path="res://Blender/locker.glb" id="1_rdytw"]
+[ext_resource type="PackedScene" uid="uid://goclgsgx5ka7" path="res://scenes/weapons/gun_pickup.tscn" id="2_et6vj"]
+[ext_resource type="PackedScene" uid="uid://dvrkj7e3jgvvn" path="res://scenes/weapons/gun.tscn" id="3_lt53c"]
+
+[node name="locker" instance=ExtResource("1_rdytw")]
+
+[node name="WeaponPickup" parent="." index="1" node_paths=PackedStringArray("weapon_node") instance=ExtResource("2_et6vj")]
+transform = Transform3D(-2.72313e-08, 0.622979, -0.782239, -1, -4.37114e-08, 0, -3.41927e-08, 0.782239, 0.622979, 0, 1.07648, 0.245418)
+weapon_node = NodePath("Gun")
+spawn_probability = 0.1
+
+[node name="Gun" parent="WeaponPickup" index="2" instance=ExtResource("3_lt53c")]

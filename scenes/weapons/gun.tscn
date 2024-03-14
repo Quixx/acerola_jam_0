@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://dvrkj7e3jgvvn"]
+
+[ext_resource type="PackedScene" uid="uid://ch5xmo6gl7d44" path="res://Blender/gun.glb" id="1_whjby"]
+[ext_resource type="Script" path="res://gun.gd" id="2_1evei"]
+[ext_resource type="ArrayMesh" uid="uid://4583hn7yxvsm" path="res://Blender/muzzle_flash.obj" id="2_eyk4t"]
+[ext_resource type="Texture2D" uid="uid://so51utctbqdc" path="res://assets/muzzle_flash.png" id="2_j4pmh"]
+[ext_resource type="PackedScene" uid="uid://b2whqc6ctst2s" path="res://scenes/vfx/particle_queue.tscn" id="3_q4k43"]
+[ext_resource type="PackedScene" uid="uid://1q5xmfxwlf6y" path="res://shell_particle.tscn" id="5_jake2"]
+[ext_resource type="AudioStream" uid="uid://pmg8h3qtnxki" path="res://assets/audio/gun_shot.wav" id="7_2hb0l"]
+[ext_resource type="AudioStream" uid="uid://bc6swd0idvjn8" path="res://assets/audio/gun_empty.wav" id="8_h0c50"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urdlr"]
+transparency = 1
+shading_mode = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_viext"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0w2g"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_j4pmh")
+disable_receive_shadows = true
+
+[sub_resource type="Curve" id="Curve_f1ha4"]
+_data = [Vector2(0.00445434, 0.189474), 0.0, 0.208077, 0, 0, Vector2(0.360068, 1), 4.72632, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_g15hh"]
+offsets = PackedFloat32Array(0, 0.0645933, 0.858852, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0.97954, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_5kvij"]
+resource_name = "Gun_Light"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EffectHandle/OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u254n"]
+_data = {
+"Gun_Light": SubResource("Animation_5kvij")
+}
+
+[node name="gun" instance=ExtResource("1_whjby")]
+script = ExtResource("2_1evei")
+
+[node name="Gun" parent="." index="0"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+
+[node name="EffectHandle" type="Node3D" parent="Gun" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185942, -0.720467)
+
+[node name="shell_emitter" parent="Gun/EffectHandle" index="0" instance=ExtResource("3_q4k43")]
+particle = ExtResource("5_jake2")
+
+[node name="Particles" type="CPUParticles3D" parent="Gun/EffectHandle" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0341455, 0.204953, -0.492734)
+material_override = SubResource("StandardMaterial3D_urdlr")
+emitting = false
+lifetime = 0.5
+one_shot = true
+mesh = SubResource("QuadMesh_viext")
+direction = Vector3(0, 0, -1)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+
+[node name="Muzzle_Flash" type="CPUParticles3D" parent="Gun/EffectHandle" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.119203)
+material_override = SubResource("StandardMaterial3D_f0w2g")
+emitting = false
+amount = 1
+lifetime = 0.05
+one_shot = true
+mesh = ExtResource("2_eyk4t")
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 0.1
+scale_amount_min = 0.3
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_f1ha4")
+color_ramp = SubResource("Gradient_g15hh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Gun/EffectHandle" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.963786)
+visible = false
+light_color = Color(0.894118, 0.537255, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gun" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_u254n")
+}
+
+[node name="GunShot" type="AudioStreamPlayer3D" parent="." index="1"]
+stream = ExtResource("7_2hb0l")
+volume_db = -7.471
+max_db = 6.0
+panning_strength = 0.15
+bus = &"Game_SFX"
+
+[node name="GunEmpty" type="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("8_h0c50")
+volume_db = -20.861
+max_db = 6.0
+panning_strength = 0.15
+bus = &"Game_SFX"

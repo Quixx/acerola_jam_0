@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://d8b1eai2jrhm"]
+
+[ext_resource type="Script" path="res://scenes/map_generator/map_generator.gd" id="1_0n8qh"]
+[ext_resource type="PackedScene" uid="uid://byamkt83vwb5d" path="res://scenes/rooms/room_1_entrance.tscn" id="2_05wd1"]
+[ext_resource type="PackedScene" uid="uid://7rnha4fta0rp" path="res://scenes/props/goal_teleport.tscn" id="2_hrb4b"]
+[ext_resource type="PackedScene" uid="uid://8lttfcnf5due" path="res://scenes/rooms/room_t_b.tscn" id="3_s77jo"]
+[ext_resource type="PackedScene" uid="uid://c444w7djnpmfb" path="res://scenes/rooms/room_crossing.tscn" id="4_kd64s"]
+[ext_resource type="PackedScene" uid="uid://cwsmyy2ais07l" path="res://scenes/rooms/room_b_r.tscn" id="5_8bygu"]
+[ext_resource type="PackedScene" uid="uid://c0bwou4ovqcte" path="res://scenes/rooms/room_t_crossing.tscn" id="5_rbdge"]
+[ext_resource type="PackedScene" uid="uid://dx716nakbohbi" path="res://scenes/rooms/room_empty.tscn" id="8_kspnp"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0sm1w"]
+geometry_parsed_geometry_type = 1
+agent_radius = 0.6
+
+[node name="GeneratedMap" type="Node3D"]
+script = ExtResource("1_0n8qh")
+goal_teleporter = ExtResource("2_hrb4b")
+
+[node name="RoomDefinitions" type="Node" parent="."]
+
+[node name="roomT" parent="RoomDefinitions" instance=ExtResource("2_05wd1")]
+visible = false
+
+[node name="roomR" parent="RoomDefinitions" instance=ExtResource("2_05wd1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+doors = 8
+
+[node name="roomB" parent="RoomDefinitions" instance=ExtResource("2_05wd1")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+doors = 2
+
+[node name="roomL" parent="RoomDefinitions" instance=ExtResource("2_05wd1")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+visible = false
+doors = 4
+
+[node name="RoomCrossing" parent="RoomDefinitions" instance=ExtResource("4_kd64s")]
+visible = false
+
+[node name="RoomCrossingBLR" parent="RoomDefinitions" instance=ExtResource("5_rbdge")]
+visible = false
+
+[node name="RoomCrossingTBR" parent="RoomDefinitions" instance=ExtResource("5_rbdge")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+doors = 7
+
+[node name="RoomCrossingTLR" parent="RoomDefinitions" instance=ExtResource("5_rbdge")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+doors = 13
+
+[node name="RoomCrossingTRB" parent="RoomDefinitions" instance=ExtResource("5_rbdge")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+visible = false
+doors = 11
+
+[node name="RoomTB" parent="RoomDefinitions" instance=ExtResource("3_s77jo")]
+visible = false
+
+[node name="RoomLR" parent="RoomDefinitions" instance=ExtResource("3_s77jo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+doors = 12
+
+[node name="RoomBR" parent="RoomDefinitions" instance=ExtResource("5_8bygu")]
+visible = false
+
+[node name="RoomBL" parent="RoomDefinitions" instance=ExtResource("5_8bygu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+doors = 6
+
+[node name="RoomTL" parent="RoomDefinitions" instance=ExtResource("5_8bygu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+doors = 5
+
+[node name="RoomTR" parent="RoomDefinitions" instance=ExtResource("5_8bygu")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+visible = false
+doors = 9
+
+[node name="room_empty" parent="RoomDefinitions" instance=ExtResource("8_kspnp")]
+visible = false
+
+[node name="NavigationRegion" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0sm1w")
+
+[node name="Rooms" type="Node3D" parent="NavigationRegion"]

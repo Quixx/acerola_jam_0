@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://22unjvn8w818"]
+
+[ext_resource type="FontFile" uid="uid://dhl4sb1f85l8g" path="res://assets/Instruction Bold.otf" id="1_8t370"]
+[ext_resource type="FontFile" uid="uid://0w8mecaojf17" path="res://assets/absender1.ttf" id="1_wt3e1"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_8t370")
+Label/fonts/font = ExtResource("1_wt3e1")

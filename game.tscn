@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://irgxudfjyaqe"]
+
+[ext_resource type="PackedScene" uid="uid://d8b1eai2jrhm" path="res://scenes/map_generator/generated_map.tscn" id="1_aelyc"]
+[ext_resource type="Script" path="res://scripts/utils/game_init.gd" id="1_yj4a5"]
+[ext_resource type="PackedScene" uid="uid://cf573nhgrhfxk" path="res://scenes/player/player.tscn" id="2_mwnun"]
+[ext_resource type="Script" path="res://scripts/utils/aduio_manager.gd" id="3_6qp68"]
+[ext_resource type="Script" path="res://scripts/utils/impact_manager.gd" id="4_61nom"]
+[ext_resource type="PackedScene" uid="uid://7owd1lt6026p" path="res://scenes/vfx/bullet_hole.tscn" id="4_vrax5"]
+[ext_resource type="PackedScene" uid="uid://c8ixi38rlhja8" path="res://scenes/vfx/blood_effect_2.tscn" id="6_71n4n"]
+[ext_resource type="PackedScene" uid="uid://bh0b5wblp48or" path="res://scenes/screens/game_ui/game_ui.tscn" id="8_g4ttr"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_yj4a5")
+end_scene = "res://scenes/screens/end_scene.tscn"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0)
+layers = 0
+light_color = Color(0.839216, 0.831373, 0.901961, 1)
+light_energy = 0.7
+shadow_enabled = true
+sky_mode = 1
+
+[node name="GeneratedMap" parent="." instance=ExtResource("1_aelyc")]
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.85, 0)
+size = Vector3(256, 2, 256)
+
+[node name="Player" parent="." instance=ExtResource("2_mwnun")]
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("3_6qp68")
+
+[node name="ImpactManager" type="Node" parent="."]
+script = ExtResource("4_61nom")
+BulletHole = ExtResource("4_vrax5")
+BloodParticles = ExtResource("6_71n4n")
+
+[node name="GameUI" parent="." instance=ExtResource("8_g4ttr")]

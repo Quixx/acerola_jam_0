@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://1q5xmfxwlf6y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbrct"]
+albedo_color = Color(0.929412, 0.627451, 0.435294, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.65
+rim_tint = 0.57
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_frk8m"]
+radius = 0.05
+height = 0.2
+
+[node name="Shell" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.150794, 0.7)
+material_override = SubResource("StandardMaterial3D_cbrct")
+emitting = false
+amount = 1
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("CapsuleMesh_frk8m")
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+angular_velocity_min = 140.0
+angular_velocity_max = 720.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5

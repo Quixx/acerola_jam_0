@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0bwou4ovqcte"]
+
+[ext_resource type="Script" path="res://scripts/utils/random_scene.gd" id="1_homn8"]
+[ext_resource type="PackedScene" uid="uid://elmlpxm6nr8d" path="res://scenes/rooms/rooms_t/room_t.tscn" id="2_v231e"]
+[ext_resource type="PackedScene" uid="uid://dmaoatfp3ut7k" path="res://scenes/rooms/rooms_t/room_t_2.tscn" id="3_744cu"]
+
+[node name="RoomCrossing" type="Node3D"]
+script = ExtResource("1_homn8")
+scene_candidates = Array[PackedScene]([ExtResource("2_v231e"), ExtResource("3_744cu")])
+isRoom = true
+doors = 14
+
+[node name="StartRoom2" parent="." instance=ExtResource("2_v231e")]

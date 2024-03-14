@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp583k5d18r33"]
+
+[ext_resource type="PackedScene" uid="uid://dywwuihwut2a" path="res://Blender/wall_tile.glb" id="1_8xn66"]
+[ext_resource type="Script" path="res://scripts/utils/hit_type.gd" id="2_ktwtm"]
+
+[node name="wall_tile" instance=ExtResource("1_8xn66")]
+
+[node name="wall_detailed" parent="." index="0"]
+layers = 17
+
+[node name="StaticBody3D" parent="wall_detailed" index="0"]
+script = ExtResource("2_ktwtm")

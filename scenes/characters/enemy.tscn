@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtycuf5wp4tdw"]
+
+[ext_resource type="Script" path="res://scenes/characters/enemy.gd" id="1_um8fw"]
+[ext_resource type="PackedScene" uid="uid://btudj6ie5dql2" path="res://charactger_rigged.tscn" id="2_jr3mf"]
+[ext_resource type="PackedScene" uid="uid://dvrkj7e3jgvvn" path="res://scenes/weapons/gun.tscn" id="2_usfqg"]
+[ext_resource type="PackedScene" uid="uid://goclgsgx5ka7" path="res://scenes/weapons/gun_pickup.tscn" id="3_2fmor"]
+[ext_resource type="PackedScene" uid="uid://crx5eqs07pvw5" path="res://bullet.tscn" id="3_j81ni"]
+[ext_resource type="AudioStream" uid="uid://coghxwyi8ablj" path="res://assets/audio/punch_hit_2.wav" id="3_oerh6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwnoy"]
+transparency = 1
+albedo_color = Color(1, 0.0980392, 0.0980392, 0.117647)
+metallic_specular = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w63cw"]
+material = SubResource("StandardMaterial3D_xwnoy")
+top_radius = 4.0
+height = 5.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wab1d"]
+radius = 0.308307
+height = 1.36865
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fv24x"]
+streams_count = 1
+playback_mode = 1
+random_pitch = 1.15
+stream_0/stream = ExtResource("3_oerh6")
+stream_0/weight = 1.0
+
+[node name="enemy" type="CharacterBody3D"]
+collision_layer = 130
+script = ExtResource("1_um8fw")
+weapon_scene = ExtResource("2_usfqg")
+bullet_scene = ExtResource("3_j81ni")
+gun_pickup = ExtResource("3_2fmor")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55186, 0)
+visible = false
+billboard = 1
+text = "0.0"
+
+[node name="ViewCone" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1.91069e-17, -4.37114e-08, 1, -0.01, -4.37114e-08, 3.59989e-21, 4.37114e-10, -1, -4.37114e-08, 0, 0.135741, -2.82134)
+visible = false
+mesh = SubResource("CylinderMesh_w63cw")
+skeleton = NodePath("../..")
+
+[node name="charactger_rigged" parent="Visuals" instance=ExtResource("2_jr3mf")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="BulletStart" type="Node3D" parent="Visuals/charactger_rigged"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0400845, 0.842144, 0.448433)
+
+[node name="RotationTarget" type="Node3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74342, 0)
+shape = SubResource("CapsuleShape3D_wab1d")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Audio" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.801628, 0)
+
+[node name="PunchHit" type="AudioStreamPlayer3D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_fv24x")

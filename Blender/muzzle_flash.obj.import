@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://4583hn7yxvsm"
+path="res://.godot/imported/muzzle_flash.obj-1e4fd1968da2779484bd829ad2b39c42.mesh"
+
+[deps]
+
+files=["res://.godot/imported/muzzle_flash.obj-1e4fd1968da2779484bd829ad2b39c42.mesh"]
+
+source_file="res://Blender/muzzle_flash.obj"
+dest_files=["res://.godot/imported/muzzle_flash.obj-1e4fd1968da2779484bd829ad2b39c42.mesh", "res://.godot/imported/muzzle_flash.obj-1e4fd1968da2779484bd829ad2b39c42.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

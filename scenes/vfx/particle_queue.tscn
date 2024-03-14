@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2whqc6ctst2s"]
+
+[ext_resource type="Script" path="res://scripts/utils/particle_queue.gd" id="1_wihco"]
+
+[node name="particle_queue" type="Node3D"]
+script = ExtResource("1_wihco")

@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv86h4ga68if1"]
+
+[ext_resource type="PackedScene" uid="uid://dp583k5d18r33" path="res://scenes/rooms/parts/wall_tile.tscn" id="1_pyl8p"]
+[ext_resource type="PackedScene" uid="uid://dpiv08juqyu3k" path="res://scenes/rooms/parts/floor_tile.tscn" id="2_tdpq1"]
+[ext_resource type="PackedScene" uid="uid://bkbrani0xg2p8" path="res://scenes/rooms/parts/door_tile.tscn" id="3_rl65e"]
+[ext_resource type="PackedScene" uid="uid://dkxy27s1p7knb" path="res://scenes/props/wall_light.tscn" id="4_2l58v"]
+[ext_resource type="PackedScene" uid="uid://cfv2xtg7i8c5y" path="res://scenes/props/desk.tscn" id="5_5lstw"]
+[ext_resource type="PackedScene" uid="uid://goclgsgx5ka7" path="res://scenes/weapons/gun_pickup.tscn" id="6_olhaj"]
+[ext_resource type="PackedScene" uid="uid://dvrkj7e3jgvvn" path="res://scenes/weapons/gun.tscn" id="7_wvmhd"]
+[ext_resource type="PackedScene" uid="uid://b5dmsrmyrd80n" path="res://scenes/props/random_decoration.tscn" id="8_3wwxs"]
+
+[node name="StartRoom" type="Node3D"]
+
+[node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161247, -4.76837e-07, 0.0027287)
+
+[node name="wall_tile" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6)
+
+[node name="wall_tile2" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 6)
+
+[node name="wall_tile3" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 6)
+
+[node name="wall_tile4" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 0, 4)
+
+[node name="wall_tile5" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 0, -2.3772e-07)
+
+[node name="wall_tile6" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 0, -4)
+
+[node name="wall_tile7" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 4, 0, -6)
+
+[node name="wall_tile8" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -6)
+
+[node name="wall_tile9" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6, 0, -4)
+
+[node name="wall_tile10" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6, 0, 6.98492e-10)
+
+[node name="wall_tile12" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -4, 0, 2)
+
+[node name="wall_tile11" parent="Walls" instance=ExtResource("1_pyl8p")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6, 0, 4)
+
+[node name="Floors" type="Node3D" parent="."]
+
+[node name="floor_tile14" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_tile15" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_tile16" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_tile17" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_tile18" parent="Floors" instance=ExtResource("2_tdpq1")]
+
+[node name="floor_tile19" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_tile20" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_tile21" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_tile22" parent="Floors" instance=ExtResource("2_tdpq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="door_tile" parent="Doors" instance=ExtResource("3_rl65e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="door_tile2" parent="Doors" instance=ExtResource("3_rl65e")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 4)
+
+[node name="WallLight" parent="." instance=ExtResource("4_2l58v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.61613, 2.41988, -1.03568)
+
+[node name="WallLight3" parent="." instance=ExtResource("4_2l58v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.21071, 2.41988, 5.66642)
+
+[node name="WallLight2" parent="." instance=ExtResource("4_2l58v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.61092, 2.41988, -2.03568)
+
+[node name="desk" parent="." instance=ExtResource("5_5lstw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="desk2" parent="." instance=ExtResource("5_5lstw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="WeaponPickup" parent="." node_paths=PackedStringArray("weapon_node") instance=ExtResource("6_olhaj")]
+transform = Transform3D(-2.72313e-08, 0.622979, -0.782239, -1, -4.37114e-08, 0, -3.41927e-08, 0.782239, 0.622979, 3.21635, 0.963035, 3.17446)
+weapon_node = NodePath("Gun")
+spawn_probability = 0.1
+
+[node name="Gun" parent="WeaponPickup" instance=ExtResource("7_wvmhd")]
+
+[node name="RandomDecoration" parent="." instance=ExtResource("8_3wwxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+spawn_probability = 0.45

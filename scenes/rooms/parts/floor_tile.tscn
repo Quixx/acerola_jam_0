@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpiv08juqyu3k"]
+
+[ext_resource type="PackedScene" uid="uid://lfvcv70q51d" path="res://Blender/floor_tile.glb" id="1_bc2tf"]
+
+[node name="floor_tile" instance=ExtResource("1_bc2tf")]
+
+[node name="StaticBody3D" parent="floor_001" index="0"]
+collision_mask = 5

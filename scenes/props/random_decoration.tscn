@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5dmsrmyrd80n"]
+
+[ext_resource type="Script" path="res://scripts/utils/random_scene.gd" id="1_fa57g"]
+[ext_resource type="PackedScene" uid="uid://dm57b01b0h08w" path="res://scenes/props/flower_pot.tscn" id="2_07cpo"]
+
+[node name="RandomDecoration" type="Node3D"]
+script = ExtResource("1_fa57g")
+scene_candidates = Array[PackedScene]([ExtResource("2_07cpo")])
+
+[node name="Preview" parent="." instance=ExtResource("2_07cpo")]

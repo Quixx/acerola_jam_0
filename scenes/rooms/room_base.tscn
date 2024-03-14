@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci35xmge2ia05"]
+
+[ext_resource type="Script" path="res://scripts/utils/random_scene.gd" id="1_agbmx"]
+[ext_resource type="PackedScene" uid="uid://h4a6saefxjws" path="res://scenes/rooms/rooms_start/start_room.tscn" id="2_t77ow"]
+[ext_resource type="PackedScene" uid="uid://cv86h4ga68if1" path="res://scenes/rooms/rooms_start/start_room_2.tscn" id="3_5w4kh"]
+
+[node name="room_1_entrance" type="Node3D"]
+script = ExtResource("1_agbmx")
+scene_candidates = Array[PackedScene]([ExtResource("2_t77ow"), ExtResource("3_5w4kh")])
+isRoom = true
+doors = 1
+
+[node name="StartRoom" parent="." instance=ExtResource("2_t77ow")]

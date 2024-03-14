@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://elmlpxm6nr8d"]
+
+[ext_resource type="PackedScene" uid="uid://dp583k5d18r33" path="res://scenes/rooms/parts/wall_tile.tscn" id="1_bhpsr"]
+[ext_resource type="PackedScene" uid="uid://dpiv08juqyu3k" path="res://scenes/rooms/parts/floor_tile.tscn" id="2_h5evn"]
+[ext_resource type="PackedScene" uid="uid://bkbrani0xg2p8" path="res://scenes/rooms/parts/door_tile.tscn" id="3_hn5w8"]
+[ext_resource type="PackedScene" uid="uid://bakohs3y3l5wv" path="res://scenes/props/random_desk.tscn" id="4_x5h3j"]
+[ext_resource type="PackedScene" uid="uid://dkxy27s1p7knb" path="res://scenes/props/wall_light.tscn" id="5_jmbem"]
+[ext_resource type="PackedScene" uid="uid://dtycuf5wp4tdw" path="res://scenes/characters/enemy.tscn" id="6_yrp5u"]
+[ext_resource type="PackedScene" uid="uid://bno7j4lr3adt7" path="res://scenes/props/random_locker.tscn" id="7_geavs"]
+[ext_resource type="PackedScene" uid="uid://bqxoubmpn3nng" path="res://scenes/characters/patrol_point.tscn" id="7_qymx5"]
+
+[node name="StartRoom" type="Node3D"]
+
+[node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161247, -4.76837e-07, 0.0027287)
+
+[node name="wall_tile4" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="wall_tile12" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6077e-08, 0, -6)
+
+[node name="wall_tile5" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+
+[node name="wall_tile6" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, -4)
+
+[node name="wall_tile7" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 4)
+
+[node name="wall_tile8" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, 0, 6)
+
+[node name="wall_tile9" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 0, 6)
+
+[node name="wall_tile10" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 0, 4)
+
+[node name="wall_tile11" parent="Walls" instance=ExtResource("1_bhpsr")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 0, -4)
+
+[node name="Floors" type="Node3D" parent="."]
+
+[node name="floor_tile10" parent="Floors" instance=ExtResource("2_h5evn")]
+
+[node name="floor_tile11" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_tile12" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_tile13" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_tile14" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_tile15" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_tile16" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_tile17" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_tile18" parent="Floors" instance=ExtResource("2_h5evn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="door_tile2" parent="Doors" instance=ExtResource("3_hn5w8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 0)
+
+[node name="door_tile3" parent="Doors" instance=ExtResource("3_hn5w8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, 0)
+
+[node name="door_tile4" parent="Doors" instance=ExtResource("3_hn5w8")]
+transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, 0, 0, 6)
+
+[node name="RandomDesk" parent="." instance=ExtResource("4_x5h3j")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0976242, 0.0247054, -2.65064)
+
+[node name="WallLight" parent="." instance=ExtResource("5_jmbem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00925136, 2.48852, -5.59727)
+
+[node name="WallLight2" parent="." instance=ExtResource("5_jmbem")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.61788, 2.48852, 0.0255483)
+
+[node name="WallLight3" parent="." instance=ExtResource("5_jmbem")]
+transform = Transform3D(0.0320912, 0, 0.999485, 0, 1, 0, -0.999485, 0, 0.0320912, -5.60587, 2.50556, 0.0255483)
+
+[node name="enemy" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_yrp5u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142389, 0.0247068, -4.37165)
+patrol_points = [NodePath("../PatrolPoints/PatrolPoint"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
+
+[node name="enemy2" parent="." instance=ExtResource("6_yrp5u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94004, 0.0132036, 3.97328)
+
+[node name="enemy3" parent="." instance=ExtResource("6_yrp5u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45815, 0.0247059, 3.90278)
+
+[node name="RandomLocker" parent="." instance=ExtResource("7_geavs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, -4.3578)
+spawn_probability = 0.5
+
+[node name="RandomLocker2" parent="." instance=ExtResource("7_geavs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, -2.88253)
+spawn_probability = 0.25
+
+[node name="PatrolPoints" type="Node3D" parent="."]
+
+[node name="PatrolPoint" parent="PatrolPoints" instance=ExtResource("7_qymx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0159116, 0, -4.09337)
+
+[node name="PatrolPoint2" parent="PatrolPoints" instance=ExtResource("7_qymx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37799, 0, -4.63599)
+
+[node name="PatrolPoint3" parent="PatrolPoints" instance=ExtResource("7_qymx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0310702, 9.53674e-07, 2.06853)
+
+[node name="PatrolPoint4" parent="PatrolPoints" instance=ExtResource("7_qymx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89282, -4.76837e-07, -4.76042)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bakohs3y3l5wv"]
+
+[ext_resource type="Script" path="res://scripts/utils/random_scene.gd" id="1_yt7mg"]
+[ext_resource type="PackedScene" uid="uid://cfv2xtg7i8c5y" path="res://scenes/props/desk.tscn" id="2_6qdup"]
+
+[node name="RandomDesk" type="Node3D"]
+script = ExtResource("1_yt7mg")
+scene_candidates = Array[PackedScene]([ExtResource("2_6qdup")])
+
+[node name="desk" parent="." instance=ExtResource("2_6qdup")]

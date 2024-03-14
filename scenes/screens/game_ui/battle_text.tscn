@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqlnyf8xrhg1g"]
+
+[ext_resource type="Script" path="res://scenes/screens/game_ui/battle_text.gd" id="1_hufjq"]
+
+[node name="BattleText" type="Label"]
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.780392, 0.0862745, 0.0784314, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Cooldown"
+script = ExtResource("1_hufjq")

@@ -1,0 +1,237 @@
+[gd_scene load_steps=34 format=3 uid="uid://cf573nhgrhfxk"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ac57g"]
+[ext_resource type="PackedScene" uid="uid://crx5eqs07pvw5" path="res://bullet.tscn" id="2_dimyq"]
+[ext_resource type="PackedScene" uid="uid://goclgsgx5ka7" path="res://scenes/weapons/gun_pickup.tscn" id="3_bqxqe"]
+[ext_resource type="PackedScene" uid="uid://btudj6ie5dql2" path="res://charactger_rigged.tscn" id="4_15emc"]
+[ext_resource type="PackedScene" uid="uid://dmjprlc3jeg2m" path="res://laser_pointer.tscn" id="4_n0608"]
+[ext_resource type="Script" path="res://scripts/abilities/ability_time_warp.gd" id="5_lujhe"]
+[ext_resource type="Script" path="res://scenes/player/ability_effect_handler.gd" id="6_vt0ox"]
+[ext_resource type="Script" path="res://scripts/abilities/ability_teleport.gd" id="6_wxb8b"]
+[ext_resource type="Script" path="res://scripts/abilities/ability_swap.gd" id="8_dw11t"]
+[ext_resource type="Script" path="res://scenes/player/aim_area.gd" id="8_i8lq3"]
+[ext_resource type="Script" path="res://scenes/player/run_handler.gd" id="8_l7kl7"]
+[ext_resource type="Script" path="res://scripts/abilities/ability_kill.gd" id="9_ml4b7"]
+[ext_resource type="Script" path="res://scenes/player/camera_movement.gd" id="9_otiac"]
+[ext_resource type="AudioStream" uid="uid://bu5v0pk4rkjap" path="res://assets/audio/gun_pickup.wav" id="9_p5y64"]
+[ext_resource type="Environment" uid="uid://dm6ox7cl3rlvt" path="res://default_environment.tres" id="10_0sveq"]
+[ext_resource type="Script" path="res://scripts/utils/copy_position.gd" id="10_8vucq"]
+[ext_resource type="AudioStream" uid="uid://coghxwyi8ablj" path="res://assets/audio/punch_hit_2.wav" id="11_nb0c4"]
+[ext_resource type="Shader" path="res://shader/cutout_depth_buffer.gdshader" id="13_kw8ke"]
+[ext_resource type="Shader" path="res://shader/ability_effect.gdshader" id="14_q12my"]
+[ext_resource type="Shader" path="res://shader/outlines.gdshader" id="17_y3qib"]
+[ext_resource type="AudioStream" uid="uid://bbc6b5w73y7hw" path="res://assets/audio/teleport.wav" id="19_8hflo"]
+[ext_resource type="PackedScene" uid="uid://djr33yy82hg8e" path="res://scenes/vfx/teleport_effect.tscn" id="20_3r2ff"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mmk2b"]
+height = 1.5
+radius = 0.33
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_egu48"]
+viewport_path = NodePath("CamerMount/CharacterDepthViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mgpum"]
+viewport_path = NodePath("CamerMount/EnvironmentDepthViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rnta8"]
+resource_local_to_scene = true
+resource_name = "EnemyOutlines"
+render_priority = 0
+shader = ExtResource("17_y3qib")
+shader_parameter/character_color = Color(0.823529, 0.192157, 0.160784, 0.192157)
+shader_parameter/show_character_depth = false
+shader_parameter/show_wall_depth = false
+shader_parameter/character_viewport = SubResource("ViewportTexture_egu48")
+shader_parameter/walls_viewport = SubResource("ViewportTexture_mgpum")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6cphy"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_rnta8")
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drhs2"]
+shader = ExtResource("14_q12my")
+shader_parameter/alpha = 0.0
+shader_parameter/scale = 0.975
+shader_parameter/vignette_intensity = 0.525
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/red_shift = 1.725
+shader_parameter/blue_shift = 3.475
+shader_parameter/green_shift = 5.53
+shader_parameter/red_mult = 1.105
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvh1p"]
+render_priority = 1
+shader = ExtResource("13_kw8ke")
+
+[sub_resource type="QuadMesh" id="QuadMesh_14pp3"]
+material = SubResource("ShaderMaterial_mvh1p")
+size = Vector2(2, 2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sfrmq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s3lbl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4q2l0"]
+radius = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 130
+floor_max_angle = 0.0872665
+script = ExtResource("1_ac57g")
+bullet_scene = ExtResource("2_dimyq")
+gun_pickup = ExtResource("3_bqxqe")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.832098, 0)
+shape = SubResource("CylinderShape3D_mmk2b")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="charactger_rigged2" parent="Visuals" instance=ExtResource("4_15emc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="laser_pointer" parent="Visuals/charactger_rigged2" instance=ExtResource("4_n0608")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0388931, 0.922047, 0.841417)
+target_position = Vector3(0, 0, 25)
+collision_mask = 3
+
+[node name="RotationTarget" type="Node3D" parent="."]
+
+[node name="Abilities" type="Node3D" parent="."]
+
+[node name="TimeWarp" type="Node3D" parent="Abilities"]
+script = ExtResource("5_lujhe")
+time_scale = 0.1
+ability_name = "TIME WARP"
+cooldown_time = 10.0
+active_duration = 0.3
+
+[node name="Teleport" type="Node3D" parent="Abilities"]
+script = ExtResource("6_wxb8b")
+ability_name = "TELEPORT"
+cooldown_time = 6.0
+max_distance = 5.0
+
+[node name="Swap" type="Node3D" parent="Abilities"]
+script = ExtResource("8_dw11t")
+ability_name = "SWAP"
+cooldown_time = 6.0
+max_distance = 10.0
+
+[node name="Kill" type="Node3D" parent="Abilities"]
+script = ExtResource("9_ml4b7")
+ability_name = "SILENT KILL"
+cooldown_time = 12.0
+max_distance = 10.0
+
+[node name="CamerMount" type="Node3D" parent="."]
+top_level = true
+script = ExtResource("9_otiac")
+
+[node name="Camera3D" type="Camera3D" parent="CamerMount"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 4)
+cull_mask = 1042431
+environment = ExtResource("10_0sveq")
+current = true
+fov = 90.0
+near = 1.0
+far = 100.0
+
+[node name="CharacterOutlineEffect" type="MeshInstance3D" parent="CamerMount/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, -0.819152, 0, 0.819152, 0.573576, 0, -0.165, -50)
+layers = 1024
+mesh = SubResource("QuadMesh_6cphy")
+skeleton = NodePath("../../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CamerMount/Camera3D"]
+script = ExtResource("6_vt0ox")
+
+[node name="FullscreenEffect" type="ColorRect" parent="CamerMount/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_drhs2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnvironmentDepthViewport" type="SubViewport" parent="CamerMount"]
+transparent_bg = true
+gui_disable_input = true
+canvas_cull_mask = 4293918720
+render_target_update_mode = 4
+
+[node name="EnvironmentDepth" type="Camera3D" parent="CamerMount/EnvironmentDepthViewport" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 4)
+cull_mask = 4112
+current = true
+fov = 90.0
+near = 1.0
+far = 100.0
+script = ExtResource("10_8vucq")
+target = NodePath("../../Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CamerMount/EnvironmentDepthViewport/EnvironmentDepth"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, -0.819152, 0, 0.819152, 0.573576, 0, -0.165, -50)
+layers = 4096
+mesh = SubResource("QuadMesh_14pp3")
+
+[node name="CharacterDepthViewport" type="SubViewport" parent="CamerMount"]
+transparent_bg = true
+gui_disable_input = true
+canvas_cull_mask = 4293918720
+render_target_update_mode = 4
+
+[node name="CharacterDepth" type="Camera3D" parent="CamerMount/CharacterDepthViewport" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 4)
+cull_mask = 2560
+current = true
+fov = 90.0
+near = 1.0
+far = 100.0
+script = ExtResource("10_8vucq")
+target = NodePath("../../Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CamerMount/CharacterDepthViewport/CharacterDepth"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, -0.819152, 0, 0.819152, 0.573576, 0, -0.165, -50)
+layers = 2048
+mesh = SubResource("QuadMesh_14pp3")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="GunPickupSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_p5y64")
+volume_db = -2.613
+bus = &"Game_SFX"
+
+[node name="PunchHit" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_nb0c4")
+volume_db = -7.839
+bus = &"Game_SFX"
+
+[node name="AbilitySound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("19_8hflo")
+
+[node name="AimArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("8_i8lq3")
+
+[node name="DebugSphere" type="MeshInstance3D" parent="AimArea"]
+visible = false
+mesh = SubResource("SphereMesh_sfrmq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AimArea"]
+shape = SubResource("SphereShape3D_s3lbl")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="InteractionShape" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_4q2l0")
+
+[node name="TeleportEffect" parent="." instance=ExtResource("20_3r2ff")]
+
+[node name="StartRunHandler" type="Node" parent="."]
+script = ExtResource("8_l7kl7")

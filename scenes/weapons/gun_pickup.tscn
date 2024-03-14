@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://goclgsgx5ka7"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_pickup.gd" id="1_mqacl"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon_pickup_area.gd" id="2_a1r22"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq4o4"]
+size = Vector3(0.213245, 0.203958, 0.335876)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bohfv"]
+
+[node name="GunPickup" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 5
+input_ray_pickable = false
+script = ExtResource("1_mqacl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0421635, -0.0397235)
+shape = SubResource("BoxShape3D_wq4o4")
+
+[node name="PickupArea" type="Area3D" parent="." node_paths=PackedStringArray("redirect_ability_target")]
+collision_layer = 129
+script = ExtResource("2_a1r22")
+redirect_ability_target = NodePath("..")
+
+[node name="PickupShape" type="CollisionShape3D" parent="PickupArea"]
+shape = SubResource("SphereShape3D_bohfv")

@@ -1,0 +1,359 @@
+[gd_scene load_steps=42 format=3 uid="uid://btudj6ie5dql2"]
+
+[ext_resource type="PackedScene" uid="uid://drtl7oqwskvh6" path="res://Blender/charactger_rigged.glb" id="1_tx1dd"]
+[ext_resource type="Script" path="res://scenes/characters/character_animation_events.gd" id="2_iu8yr"]
+[ext_resource type="AudioStream" uid="uid://i8pdaoop7726" path="res://assets/audio/swoosh.wav" id="3_gthoe"]
+[ext_resource type="AudioStream" uid="uid://d1371gd14m2n3" path="res://assets/audio/foot_steps/foot_step_1.wav" id="3_nw4lf"]
+[ext_resource type="PackedScene" uid="uid://c0ribfogj8glc" path="res://scenes/weapons/hit_box.tscn" id="3_vgclc"]
+[ext_resource type="AudioStream" uid="uid://cgv1r0hbbbvrc" path="res://assets/audio/swoosh_2.wav" id="4_7dqk7"]
+[ext_resource type="AudioStream" uid="uid://b5v7ulu4m20li" path="res://assets/audio/foot_steps/foot_step_2.wav" id="4_iqce7"]
+[ext_resource type="AudioStream" uid="uid://dwy1xctx64yxp" path="res://assets/audio/foot_steps/foot_step_3.wav" id="5_5v1ov"]
+[ext_resource type="AudioStream" uid="uid://deogb8gaq4omp" path="res://assets/audio/foot_steps/foot_step_4.wav" id="6_1yyem"]
+[ext_resource type="AudioStream" uid="uid://bosu6wn21ykbe" path="res://assets/audio/foot_steps/foot_step_5.wav" id="7_dhkuk"]
+[ext_resource type="AudioStream" uid="uid://cohxx108oun2i" path="res://assets/audio/foot_steps/foot_step_6.wav" id="8_48stc"]
+[ext_resource type="AudioStream" uid="uid://b54xnt3cdlnpi" path="res://assets/audio/foot_steps/foot_step_7.wav" id="9_2d6cj"]
+[ext_resource type="AudioStream" uid="uid://bacik7fiqbo28" path="res://assets/audio/foot_steps/foot_step_8.wav" id="10_370ui"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clf7s"]
+radius = 0.125
+height = 0.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_doe7o"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ga7q1"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fuk03"]
+radius = 0.1
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ttqar"]
+radius = 0.0382144
+height = 0.382144
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_njt66"]
+radius = 0.0382144
+height = 0.382144
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sjesr"]
+streams_count = 8
+playback_mode = 1
+stream_0/stream = ExtResource("3_nw4lf")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_iqce7")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_5v1ov")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_1yyem")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_dhkuk")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_48stc")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_2d6cj")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_370ui")
+stream_7/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ynmrl"]
+streams_count = 2
+random_pitch = 1.26
+stream_0/stream = ExtResource("3_gthoe")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_7dqk7")
+stream_1/weight = 1.0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wls8y"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q57lq"]
+animation = &"Aim"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_nrrrr"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mhmjq"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:armL", "Armature/Skeleton3D:armR", "Armature/Skeleton3D:armR.001"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qk70"]
+animation = &"Aim_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tns4v"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kgirm"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:armL", "Armature/Skeleton3D:armR", "Armature/Skeleton3D:armR.001"]
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jx52r"]
+animation = &"melee_hit_2"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vmbyy"]
+filter_enabled = true
+filters = ["Armature", "Armature/Skeleton3D:Body", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:armL", "Armature/Skeleton3D:armR", "Armature/Skeleton3D:armR.001"]
+fadein_time = 0.1
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6kiuh"]
+filter_enabled = true
+filters = ["Armature", "Armature/Skeleton3D:Body", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:armL", "Armature/Skeleton3D:armR", "Armature/Skeleton3D:armR.001"]
+fadein_time = 0.1
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjojm"]
+animation = &"melee_hit_1"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_6til8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2kgjp"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i1mor"]
+animation = &"Run_Strafe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l564b"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hty2n"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2kgjp")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_i1mor")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_l564b")
+blend_point_2/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwm7k"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sl8yt"]
+graph_offset = Vector2(12, 160)
+nodes/Aim/node = SubResource("AnimationNodeAnimation_q57lq")
+nodes/Aim/position = Vector2(280, 640)
+nodes/Aim_State/node = SubResource("AnimationNodeBlend2_nrrrr")
+nodes/Aim_State/position = Vector2(480, 500)
+nodes/Aim_Weapon/node = SubResource("AnimationNodeBlend2_mhmjq")
+nodes/Aim_Weapon/position = Vector2(740, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_tns4v")
+nodes/Animation/position = Vector2(780, 400)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_7qk70")
+"nodes/Animation 2/position" = Vector2(260, 520)
+nodes/Fire_gun/node = SubResource("AnimationNodeOneShot_kgirm")
+nodes/Fire_gun/position = Vector2(980, 120)
+nodes/MeleeHit2Animation/node = SubResource("AnimationNodeAnimation_jx52r")
+nodes/MeleeHit2Animation/position = Vector2(1180, 400)
+nodes/Melee_Hit_1/node = SubResource("AnimationNodeOneShot_vmbyy")
+nodes/Melee_Hit_1/position = Vector2(1160, 120)
+nodes/Melee_Hit_2/node = SubResource("AnimationNodeOneShot_6kiuh")
+nodes/Melee_Hit_2/position = Vector2(1320, 120)
+nodes/MelleHit1Animation/node = SubResource("AnimationNodeAnimation_sjojm")
+nodes/MelleHit1Animation/position = Vector2(980, 400)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_6til8")
+nodes/Movement/position = Vector2(440, 160)
+nodes/Run/node = SubResource("AnimationNodeBlendSpace1D_hty2n")
+nodes/Run/position = Vector2(240, 300)
+nodes/idle/node = SubResource("AnimationNodeAnimation_hwm7k")
+nodes/idle/position = Vector2(260, 160)
+nodes/output/position = Vector2(1500, 120)
+node_connections = [&"output", 0, &"Melee_Hit_2", &"Aim_State", 0, &"Animation 2", &"Aim_State", 1, &"Aim", &"Aim_Weapon", 0, &"Movement", &"Aim_Weapon", 1, &"Aim_State", &"Fire_gun", 0, &"Aim_Weapon", &"Fire_gun", 1, &"Animation", &"Melee_Hit_1", 0, &"Fire_gun", &"Melee_Hit_1", 1, &"MelleHit1Animation", &"Melee_Hit_2", 0, &"Melee_Hit_1", &"Melee_Hit_2", 1, &"MeleeHit2Animation", &"Movement", 0, &"idle", &"Movement", 1, &"Run"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3vd6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pt8hp"]
+states/Gun/node = SubResource("AnimationNodeBlendTree_wls8y")
+states/Gun/position = Vector2(533, 250)
+states/Start/position = Vector2(194, 126)
+states/alive/node = SubResource("AnimationNodeBlendTree_sl8yt")
+states/alive/position = Vector2(389, 126)
+transitions = ["Start", "alive", SubResource("AnimationNodeStateMachineTransition_w3vd6")]
+graph_offset = Vector2(2, 11)
+
+[node name="charactger_rigged" instance=ExtResource("1_tx1dd")]
+
+[node name="Armature" parent="." index="0"]
+script = ExtResource("2_iu8yr")
+melee_hitbox = ExtResource("3_vgclc")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0682449, 0)
+bones/0/position = Vector3(-0.000523053, 0.50559, 0)
+bones/0/rotation = Quaternion(0.000705811, 7.70763e-06, 1.55305e-05, 1)
+bones/0/scale = Vector3(0.8, 0.8, 0.8)
+bones/1/position = Vector3(0.447403, 0.385896, -5.55342e-05)
+bones/1/rotation = Quaternion(-1.39126e-08, 2.45992e-07, -0.99999, -0.00458485)
+bones/3/position = Vector3(-0.439553, 0.378216, -3.66867e-05)
+bones/3/rotation = Quaternion(-2.75208e-07, -8.10361e-08, 1, 8.77976e-05)
+bones/5/position = Vector3(-3.91813e-11, 0.546116, -3.86046e-09)
+bones/5/rotation = Quaternion(0.00867172, 4.475e-07, -5.67861e-05, 0.999962)
+bones/7/rotation = Quaternion(-5.02008e-06, -1.18878e-07, 0.999999, 0.00117833)
+bones/7/scale = Vector3(0.8, 0.8, 0.8)
+bones/9/rotation = Quaternion(-4.88132e-06, -1.19088e-07, 0.999999, 0.00117835)
+bones/9/scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="Character" parent="Armature/Skeleton3D" index="0"]
+layers = 513
+
+[node name="WeaponHandAttach" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.8, 4.95402e-05, 1.20848e-05, -4.95572e-05, -0.799999, -0.00112951, 1.20149e-05, -0.00112951, 0.799999, -0.352229, 0.43636, -0.000121708)
+bone_name = "armR.001"
+bone_idx = 4
+
+[node name="Offset" type="Node3D" parent="Armature/Skeleton3D/WeaponHandAttach" index="0"]
+transform = Transform3D(0.14781, 0.971047, -0.187669, -0.441319, -0.105056, -0.891179, -0.885091, 0.214547, 0.413013, 0.0220469, 0.0139873, -0.024194)
+
+[node name="OffhandAttach" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.799044, -0.0391095, 1.23801e-05, 0.0391094, -0.799043, -0.00112957, 6.75863e-05, -0.00112761, 0.799999, 0.353998, 0.443169, -0.000138198)
+bone_name = "armL.001"
+bone_idx = 2
+
+[node name="PhysicalBoneBody" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.423989, -0.53747, -0.709998, -0.120514, 0.747211, -0.636128, 0.881004, 0.359953, 0.254177, 0.0201654, 0.759707, 0.0186561)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00561923, -0.190239, 0.176532)
+body_offset = Transform3D(0.529964, -0.671815, -0.887528, -0.149041, 0.934695, -0.794663, 1.10148, 0.448558, 0.318875, 0.0258938, 0.318936, 0.0228521)
+bone_name = "Body"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneBody" index="0"]
+transform = Transform3D(1.00001, 0.000891809, -0.000264368, 0.000562715, -0.806041, -0.591886, -0.00074079, 0.591888, -0.806038, -0.000265719, 0.0173436, -0.0149381)
+shape = SubResource("CapsuleShape3D_clf7s")
+
+[node name="Physical Bone armL" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.896157, 0.413749, 0.105718, -0.126828, -0.492374, 0.853113, 0.407801, 0.755173, 0.49726, 0.288729, 0.781457, -0.203085)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_type = 3
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0177824, 0.168886, 0.138154)
+body_offset = Transform3D(1.11873, -0.522701, -0.122483, 0.167906, 0.60938, -1.06845, 0.509965, 0.944879, 0.620009, 0.0853045, 0.0417097, -0.254301)
+bone_name = "armL"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 20.0
+joint_constraints/angular_limit_lower = -20.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Physical Bone armL" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_doe7o")
+
+[node name="Physical Bone armR" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="5"]
+transform = Transform3D(-0.689297, 0.698203, -0.136376, -0.639633, -0.690092, -0.311145, -0.313918, -0.128215, 0.933907, -0.0685273, 0.331614, 0.116003)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_type = 3
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0737716, -0.522006, -0.220226)
+body_offset = Transform3D(0.861438, -0.872947, 0.170403, 0.800306, 0.862657, 0.387253, -0.391236, -0.158988, 1.16795, -0.354607, 0.594635, 0.145358)
+bone_name = "armR"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 20.0
+joint_constraints/angular_limit_lower = -20.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Physical Bone armR" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ga7q1")
+
+[node name="Physical Bone Head" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="6"]
+transform = Transform3D(0.769522, -0.216174, -0.579659, 0.0902356, -0.877545, 0.451509, -0.607163, -0.404882, -0.668057, 0.0365533, 1.00533, 0.0838856)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_type = 2
+joint_offset = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0.0167914, 0.0987996, 0.0494644)
+body_offset = Transform3D(0.961906, -0.27012, -0.724604, 0.0992775, -1.10583, 0.549297, -0.760834, -0.486402, -0.845046, 0.0463781, 0.080418, 0.102631)
+bone_name = "Head"
+joint_constraints/swing_span = 45.0
+joint_constraints/twist_span = 90.0
+joint_constraints/bias = 0.3
+joint_constraints/softness = 0.8
+joint_constraints/relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Physical Bone Head" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000115252, -0.000863524, -0.0118741)
+shape = SubResource("CapsuleShape3D_fuk03")
+
+[node name="PhysicalBoneLegL" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="7"]
+transform = Transform3D(-0.995481, -0.00251332, 0.0315813, 0.0212843, -0.785178, 0.608632, 0.0234507, 0.610185, 0.787805, 0.176324, 0.365547, -0.106283)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_type = 3
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0245625, 0.0405889, 0.102741)
+body_offset = Transform3D(1.24441, 0.000820991, -0.0376935, -0.0236728, 0.981476, -0.760881, 0.0293259, 0.762732, 0.984756, -0.0267265, 0.0389184, -0.132854)
+bone_name = "LegL"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 20.0
+joint_constraints/angular_limit_lower = -20.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneLegL" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ttqar")
+
+[node name="PhysicalBoneLegR" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="8"]
+transform = Transform3D(-0.993934, -0.00351457, -0.0322543, -0.0250691, 0.707176, 0.704276, 0.0203584, 0.706646, -0.70561, -0.18124, 0.351865, 0.0957262)
+visible = false
+collision_layer = 4
+input_ray_pickable = false
+joint_type = 3
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283187, -0.035974, 0.0988205)
+body_offset = Transform3D(1.24234, 0.00646782, 0.0424011, 0.0342643, -0.883957, -0.880248, 0.0254601, 0.883307, -0.882012, 0.0312241, 0.0561574, 0.119658)
+bone_name = "LegR"
+joint_constraints/angular_limit_enabled = true
+joint_constraints/angular_limit_upper = 20.0
+joint_constraints/angular_limit_lower = -20.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneLegR" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_njt66")
+
+[node name="Audio" type="Node3D" parent="Armature" index="1"]
+
+[node name="StepSound" type="AudioStreamPlayer3D" parent="Armature/Audio" index="0"]
+stream = SubResource("AudioStreamRandomizer_sjesr")
+attenuation_model = 2
+volume_db = -50.0
+max_distance = 20.0
+bus = &"Game_SFX"
+
+[node name="ShwooshSound" type="AudioStreamPlayer3D" parent="Armature/Audio" index="1"]
+stream = SubResource("AudioStreamRandomizer_ynmrl")
+attenuation_model = 2
+volume_db = -30.0
+max_distance = 20.0
+bus = &"Game_SFX"
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_pt8hp")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/alive/Aim_State/blend_amount = 0.0
+parameters/alive/Aim_Weapon/blend_amount = 0.0
+parameters/alive/Fire_gun/active = false
+parameters/alive/Fire_gun/internal_active = false
+parameters/alive/Fire_gun/request = 0
+parameters/alive/Melee_Hit_1/active = false
+parameters/alive/Melee_Hit_1/internal_active = false
+parameters/alive/Melee_Hit_1/request = 0
+parameters/alive/Melee_Hit_2/active = false
+parameters/alive/Melee_Hit_2/internal_active = false
+parameters/alive/Melee_Hit_2/request = 0
+parameters/alive/Movement/blend_amount = 0.0
+parameters/alive/Run/blend_position = 1.0

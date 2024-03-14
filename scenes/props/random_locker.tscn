@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bno7j4lr3adt7"]
+
+[ext_resource type="Script" path="res://scripts/utils/random_scene.gd" id="1_yr7qe"]
+[ext_resource type="PackedScene" uid="uid://b2jw6je1aol32" path="res://scenes/props/locker.tscn" id="3_ujkn4"]
+
+[node name="RandomLocker" type="Node3D"]
+script = ExtResource("1_yr7qe")
+scene_candidates = Array[PackedScene]([ExtResource("3_ujkn4")])
+
+[node name="locker" parent="." instance=ExtResource("3_ujkn4")]

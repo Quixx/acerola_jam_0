@@ -1,0 +1,81 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8ixi38rlhja8"]
+
+[ext_resource type="Shader" uid="uid://1m2dax16ppu" path="res://shader/blood_shader.tres" id="1_u1r50"]
+[ext_resource type="Shader" uid="uid://cdjclr4iyc6wb" path="res://shader/blood_spot_shader.tres" id="2_70xiu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o284h"]
+render_priority = 0
+shader = ExtResource("1_u1r50")
+
+[sub_resource type="Curve" id="Curve_82ke4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.389474), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_do31b"]
+curve = SubResource("Curve_82ke4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ocxmc"]
+direction = Vector3(0, 0, -1)
+spread = 30.0
+initial_velocity_min = -0.5
+initial_velocity_max = 8.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+damping_min = 2.0
+damping_max = 4.0
+scale_min = 0.05
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_do31b")
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+collision_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_uvyxd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4qt8"]
+render_priority = 0
+shader = ExtResource("2_70xiu")
+
+[sub_resource type="Gradient" id="Gradient_ab3xq"]
+offsets = PackedFloat32Array(0, 0.436782)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e1okj"]
+gradient = SubResource("Gradient_ab3xq")
+
+[sub_resource type="Curve" id="Curve_83vqf"]
+_data = [Vector2(0, 0.715789), 0.0, 3.52078, 0, 0, Vector2(0.0487805, 1), 0.0938216, 0.0938216, 0, 0, Vector2(0.585366, 1), -0.0407154, -0.0407154, 0, 0, Vector2(1, 0), -6.83333, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4axya"]
+curve = SubResource("Curve_83vqf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfilb"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_4axya")
+color_ramp = SubResource("GradientTexture1D_e1okj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tq84j"]
+orientation = 1
+
+[node name="Blood" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_o284h")
+emitting = false
+amount = 25
+sub_emitter = NodePath("GPUParticles3D")
+one_shot = true
+explosiveness = 0.95
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_ocxmc")
+draw_pass_1 = SubResource("QuadMesh_uvyxd")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_t4qt8")
+cast_shadow = 0
+emitting = false
+amount = 25
+lifetime = 8.0
+process_material = SubResource("ParticleProcessMaterial_wfilb")
+draw_pass_1 = SubResource("QuadMesh_tq84j")
